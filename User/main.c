@@ -61,6 +61,7 @@ int main(void)
 			OLED_ShowString(0,30,"Rxdata",16,0);
 			OLED_ShowHEXNum(56,30,Rxdata,2,16,1);
 			OLED_Refresh();
+			Serial_print("收到数据%X\r\n",Rxdata);
 			Rxstate=0;
 			i=1;
 			delay_ms(1000);
