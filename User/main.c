@@ -50,7 +50,8 @@ int main(void)
 			for(;i==1;i=!i)
 				OLED_Clear();
 			toptitle("transport",0);
-			Serialprint(0x41);
+			OLED_ShowString(0,30,"Rxdata",16,0);
+			Serial_print("这是测试%d:\r\n",1);
 			OLED_Refresh();
 			delay_ms(1000);
 			break;

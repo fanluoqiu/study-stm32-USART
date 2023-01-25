@@ -39,9 +39,25 @@ void Serialprint_init(void)
     USART_ITConfig(USART2,USART_IT_RXNE,ENABLE);
 }
 
-void Serialprint(uint8_t data)
+void Serial_SendByte(uint8_t data)
 {
     USART_SendData(USART2,data);
     while (USART_GetFlagStatus(USART2,USART_FLAG_TXE)==RESET);
+}
+
+void Serial_SendString(char *ch)
+{
+    for(;*ch!=NULL;ch++)
+        Serial_SendByte(*ch);
+}
+
+void Serial_print(char * format,...)
+{
+    char String[100];
+    va_list arg;
+    va_start(arg,format);
+    vsprintf(String,format,arg);
+    va_end(arg);
+    Serial_SendString(String);
 }
 
